@@ -1,7 +1,7 @@
 list = [1,1,2,1,3,3,4,1,3,5,6,4]
 print(f'\nOriginal: {list}')
 
-list.sort();
+list.sort()
 print(f'\nSorted: {list}')
 i = 1
 while i < len(list):
