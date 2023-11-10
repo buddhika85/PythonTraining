@@ -7,4 +7,4 @@ try:
 except ValueError:
     print('Error : Invalid value')
 except ZeroDivisionError: 
-    print('Error : ZeroDivisionError - cannot devide by zero, age input cannot be zero')
+    print('Error : ZeroDivisionError - cannot devide by zero, age input 0cannot be zero')
