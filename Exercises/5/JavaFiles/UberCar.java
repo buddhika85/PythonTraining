@@ -4,6 +4,7 @@ class UberCar {
     boolean isAvailable;
     double earnings;
 
+
     UberCar(String model, String licensePlate) {
         this.model = model;
         this.licensePlate = licensePlate;
