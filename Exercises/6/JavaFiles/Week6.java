@@ -6,7 +6,7 @@ public class Week6 {
         String playOneName = "Joe";
         String playTwoName = "Donald";
 
-        int numGames = 5;
+        int numGames = 2;
         int i = 0;
 
         while (i < numGames) {
@@ -30,6 +30,7 @@ class Tournament {
     final static int DRAW = 2;
 
     // Run simulated game between 2 simulated participants.
+    // Rock ----beats----> Scissors ----beats----> Paper ----beats----> Rock
     GameResult runFullySimulatedGame(String playerOneName, String playerTwoName) {
         int playerOneMove = generateMove();
         int playerTwoMove = generateMove();
@@ -120,5 +121,37 @@ class GameResult {
         } else {
             return "Draw";
         }
+    }
+}
+
+class Player{
+    private String name;
+    private double earnings = 0.0;
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public int selectMove()
+    {
+        System.out.println("Enter 0 for Rock, 1 for Paper and 2 for Scissors:");
+        return In.nextInt();
+    }
+}
+
+class SimulatedPlayer{
+    private String name;
+    private double earnings = 0.0;
+
+    public SimulatedPlayer(String name) {
+        this.name = name;
+    }
+
+    public int selectMove()
+    {
+        System.out.println("Simulated Player - Enter 0 for Rock, 1 for Paper and 2 for Scissors:");
+        // nextInt(3) generates a random int with value of 0, 1 or 2.
+        return new Random().nextInt(3);
+        
     }
 }
