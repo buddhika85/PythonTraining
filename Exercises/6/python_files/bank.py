@@ -1,4 +1,4 @@
-class SavingsAccount:
+class Savings_Account:
     def __init__(self, acc_num, owner_national_id):
         self.acc_num = acc_num
         self.owner_national_id = owner_national_id
@@ -77,3 +77,28 @@ class Bank:
             return True
         else:
             return False            # customer does not owns this account
+    
+    def __str__(self):
+        return f"{self.name}, total funds: {self.calc_deposit_base()}, customers: {len(self.customers)}, savings accounts: {len(self.savings_accounts)}"
+    
+# test code
+bank = Bank("West Bank")
+
+customer_one = Customer("John Smith", "12345V")
+customer_two = Customer("Bruce Wayne", "54321V")
+account_one = Savings_Account(12345, customer_one.national_id)
+account_two = Savings_Account(45678, customer_two.national_id)
+bank.open_account(account_one, customer_one)
+bank.open_account(account_two, customer_two)
+
+customer_one.deposit(1000, account_one)
+customer_two.deposit(2000, account_two)
+result = customer_one.withdraw(500, account_one)
+print(f"Withdraw success:{result}")
+print(bank)
+
+print(bank.find_largest_balance_acccount())
+negative_accs = bank.find_negative_balanced_accounts()
+print(f"Negative balanced accounts")
+for acc in negative_accs:
+    print(acc)
