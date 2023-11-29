@@ -10,8 +10,11 @@ public class Week6Challenge {
         int i = 0;
 
         while (i < numGames) {
+            System.out.println("Round " + (i + 1));
             GameResult result = tourney.runFullySimulatedGame(player, simulatedPlayer);
             System.out.println(result);
+            System.out.println("Player one - " + player.getEarnings());
+            System.out.println("Simulated player - " + simulatedPlayer.getEarnings());
             System.out.println();
             i++;
         }
@@ -29,6 +32,9 @@ class Tournament {
     final static int PLAYER_TWO_WINS = 1;
     final static int DRAW = 2;
 
+    final static int WINNER_BTC = 50;
+    final static int DRAW_BTC = 25;
+
     GameResult runFullySimulatedGame(Player player, SimulatedPlayer simulatedPlayer) {
         int playerOneMove = player.selectMove();
         int playerTwoMove = simulatedPlayer.selectMove();
@@ -38,30 +44,42 @@ class Tournament {
         if (playerOneMove == ROCK) {
             if (playerTwoMove == ROCK) {
                 result.outcome = DRAW;
+                player.addEarnings(DRAW_BTC);
+                simulatedPlayer.addEarnings(DRAW_BTC);
             } else if (playerTwoMove == PAPER) {
                 result.outcome = PLAYER_TWO_WINS;
+                simulatedPlayer.addEarnings(WINNER_BTC);
             } else {
                 // player two made scissors
                 result.outcome = PLAYER_ONE_WINS;
+                player.addEarnings(WINNER_BTC);
             }
         } else if (playerOneMove == PAPER) {
             if (playerTwoMove == ROCK) {
                 result.outcome = PLAYER_ONE_WINS;
+                player.addEarnings(WINNER_BTC);
             } else if (playerTwoMove == PAPER) {
                 result.outcome = DRAW;
+                player.addEarnings(DRAW_BTC);
+                simulatedPlayer.addEarnings(DRAW_BTC);
             } else {
                 // player two made scissors
                 result.outcome = PLAYER_TWO_WINS;
+                simulatedPlayer.addEarnings(WINNER_BTC);
             }
         } else {
             // player one made scissors
             if (playerTwoMove == ROCK) {
                 result.outcome = PLAYER_TWO_WINS;
+                simulatedPlayer.addEarnings(WINNER_BTC);
             } else if (playerTwoMove == PAPER) {
                 result.outcome = PLAYER_ONE_WINS;
+                player.addEarnings(WINNER_BTC);
             } else {
                 // player two made scissors
                 result.outcome = DRAW;
+                player.addEarnings(DRAW_BTC);
+                simulatedPlayer.addEarnings(DRAW_BTC);
             }
         }
 
@@ -119,6 +137,7 @@ class GameResult {
 
 class Player{
     private String name;
+    private int earnings;
     
     public Player(String name) {
         this.name = name;
@@ -134,10 +153,21 @@ class Player{
     {
         return name;
     }
+
+    public void addEarnings(int earning)
+    {
+        earnings += earning;
+    }
+
+    public int getEarnings()
+    {
+        return earnings;
+    }
 }
 
 class SimulatedPlayer{
     private String name;
+    private int earnings;
    
     public SimulatedPlayer(String name) {
         this.name = name;
@@ -155,5 +185,15 @@ class SimulatedPlayer{
     public String getName()
     {
         return name;
+    }
+
+    public void addEarnings(int earning)
+    {
+        earnings += earning;
+    }
+
+    public int getEarnings()
+    {
+        return earnings;
     }
 }
