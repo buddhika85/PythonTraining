@@ -23,3 +23,30 @@ amazon_data = [
     {"id": 118, "is_prime": False, "monthly_spend": 1400.0},
     {"id": 119, "is_prime": True, "monthly_spend": 900.0}
 ]
+
+prime_members = set()
+non_prime_members = set()
+greater_than_2000 = set()
+between_1000_and_2000 = set()
+less_than_1000 = set()
+
+# populating sets
+for member in amazon_data:
+    if member["is_prime"]:
+        prime_members.add(member["id"])
+    if not member["is_prime"]:
+        non_prime_members.add(member["id"])
+    if member["monthly_spend"] > 2000:
+        greater_than_2000.add(member["id"])
+    if member["monthly_spend"] >= 1000 and member["monthly_spend"] <= 2000:
+        between_1000_and_2000.add(member["id"])
+    if member["monthly_spend"] < 1000:
+        less_than_1000.add(member["id"])
+
+# set operations 
+print(f"There are {len(prime_members & greater_than_2000)} Prime members who spend > $2000")
+print(f"There are {len(prime_members & between_1000_and_2000)} Prime members who spend between $1000 and $2000")
+print(f"There are {len(prime_members & less_than_1000)} Prime members who spend less than $1000")
+print(f"There are {len(non_prime_members & greater_than_2000)} non-Prime members who spend > $2000")
+print(f"There are {len(non_prime_members & between_1000_and_2000)} non-Prime members who spend between $1000 and $2000")
+print(f"There are {len(non_prime_members & less_than_1000)}  non-Prime members who spend less than $1000")

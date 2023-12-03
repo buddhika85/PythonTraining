@@ -59,3 +59,76 @@ it_student_data = [
         "enrolled_subjects": ["IWBS001", "IIIS001", "IAPP001"]
     }
 ]
+
+counts_dict = {
+    "accelerated": 0,
+    "standard": 0,
+    "extended": 0
+};
+
+counts_by_age = {}
+
+for student in it_student_data:
+    # print(student["course"])
+    if (student["course"] == "accelerated"):
+        counts_dict["accelerated"] = counts_dict["accelerated"] + 1
+    elif (student["course"] == "standard"):
+        counts_dict["standard"] = counts_dict["standard"] + 1
+    elif (student["course"] == "extended"):
+        counts_dict["extended"] = counts_dict["extended"] + 1
+
+print(counts_dict)
+
+for student in it_student_data:
+    #print(student["age"])
+    if (student["age"] in counts_by_age):
+        counts_by_age[student["age"]] = counts_by_age[student["age"]] + 1
+    else:
+        counts_by_age[student["age"]] = 1
+
+print(counts_by_age)
+
+# Stage 1
+# IITC001 Introduction to Technical Communication
+# IIIS001 Introduction to Information Systems
+# IPRO001 Programming 1
+# IWBS001 Web Systems
+# Stage 2
+# IBRM001 Business Requirements Modelling *
+# IPRO002 Programming 2 **
+# INEF001 Network Fundamentals
+# IDBF001 Database Fundamentals **
+counts_by_subject = {
+    "Introduction to Technical Communication": 0,
+    "Introduction to Information Systems": 0,
+    "Programming 1": 0,
+    "Web Systems": 0,
+    "Business Requirements Modelling": 0,
+    "Programming 2": 0,
+    "Network Fundamentals": 0,
+    "Database Fundamentals": 0
+}
+
+for entry in it_student_data:
+    # print(entry["enrolled_subjects"])
+    for subject in entry["enrolled_subjects"]:
+        if subject == "IITC001":
+            counts_by_subject["Introduction to Technical Communication"] = counts_by_subject["Introduction to Technical Communication"] + 1
+        elif subject == "IIIS001":
+            counts_by_subject["Introduction to Information Systems"] = counts_by_subject["Introduction to Information Systems"] + 1
+        elif subject == "IPRO001":
+            counts_by_subject["Programming 1"] = counts_by_subject["Programming 1"] + 1
+        elif subject == "IWBS001":
+            counts_by_subject["Web Systems"] = counts_by_subject["Web Systems"] + 1
+        elif subject == "IBRM001":
+            counts_by_subject["Business Requirements Modelling"] = counts_by_subject["Business Requirements Modelling"] + 1
+        elif subject == "IPRO002":
+            counts_by_subject["Programming 2"] = counts_by_subject["Programming 2"] + 1
+        elif subject == "INEF001":
+            counts_by_subject["Network Fundamentals"] = counts_by_subject["Network Fundamentals"] + 1
+        elif subject == "IDBF001":
+            counts_by_subject["Database Fundamentals"] = counts_by_subject["Database Fundamentals"] + 1
+
+#print(counts_by_subject)
+for key in counts_by_subject.keys():
+    print(f"{key}: {counts_by_subject[key]}")
