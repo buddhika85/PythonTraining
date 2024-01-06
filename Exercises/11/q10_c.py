@@ -5,7 +5,7 @@ class BankAccount:
 		self.annual_interest_rate = annual_interest_rate
 	
 	def deposit(self, amount):
-		if self.balance > 0:	
+		if amount > 0:	
 			self.balance  += amount
 		else:
 			print("Invalid deposit")
