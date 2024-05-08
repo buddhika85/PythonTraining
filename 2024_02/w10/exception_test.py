@@ -6,7 +6,7 @@ while current < max_retry_count and not input_read:
     try:
         number = int(input(f'Attempt {current} - Please enter a number: '))
         input_read = True
-    except:
+    except ValueError:
         print('\tError - Please provide a valid number')
 if input_read:
     print(f'\nYour input {number}')   
